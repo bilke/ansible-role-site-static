@@ -1,0 +1,4 @@
+---
+webroot: /var/www/example.com
+urls:
+  - example.com

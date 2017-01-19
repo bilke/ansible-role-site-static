@@ -1,0 +1,13 @@
+---
+- name: Create directory
+  file: path="/var/www/{{ sitename }}" state=directory mode=0755 owner=www-data group=www-data
+
+- name: Insert Caddy config
+  blockinfile:
+    dest: "{{ caddyfile }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - {{ sitename }}"
+    block: |
+      {{ urls|join(', ') }} {
+        root /var/www/{{ sitename }}
+      }
+  notify: restart caddy
