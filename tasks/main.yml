@@ -9,5 +9,6 @@
     block: |
       {{ urls|join(', ') }} {
         root /var/www/{{ sitename }}
+        gzip
       }
   notify: restart caddy
